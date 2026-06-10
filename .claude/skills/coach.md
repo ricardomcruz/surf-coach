@@ -21,7 +21,7 @@ Read everything silently. Do not say anything until you have the full picture.
 7. List `private/data/plans/` — read the most recent plan
 8. List `private/data/sessions/` — read all session logs (or the most recent 10 if there are many)
 
-**Available skills:** List all files in `.claude/skills/`. Know what every skill does so you can suggest the right one at the right moment. The skills currently available include setup-profile, setup-goals, setup-metrics, setup-activities, setup-nutrition, plan-gym, plan-week, log-session, reset — but always check the actual files in case new ones have been added.
+**Available skills:** List all files in `.claude/skills/`. Know what every skill does so you can suggest the right one at the right moment. Always check the actual directory — new skills may have been added by `/evolve`. Key ones: setup-profile, setup-goals, setup-metrics, setup-activities, setup-nutrition, plan-gym, plan-week, log-session, evolve, reset.
 
 ---
 
@@ -66,6 +66,9 @@ Step back and ask: is this athlete improving? Is the coaching system working?
 - Session frequency trend (consistent / declining / increasing)
 - Time since first session — what's changed since they started?
 - Overall: is this athlete progressing, plateauing, or going backwards?
+- Check `private/data/evolution-log.md` if it exists — has the system been evolved? What was the last improvement?
+
+If the athlete is plateauing, or if it's been 6+ weeks since the last `/evolve` run (or it's never been run), flag this — suggest `/evolve` to upgrade the coaching system itself.
 
 ---
 
