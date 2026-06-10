@@ -5,14 +5,16 @@
     "sessionReminders": true
   },
   "data": {
-    "sessionsDir": "data/sessions",
-    "goalsFile": "data/goals/goals.md",
-    "profileFile": "data/profile/profile.md"
+    "sessionsDir": "private/data/sessions",
+    "goalsFile": "private/data/goals/goals.md",
+    "profileFile": "private/data/profile/profile.md"
   },
-  "agents": {
-    "enabled": []
+  "shared": {
+    "agentsDir": "shared/agents",
+    "skillsDir": "shared/skills"
   },
-  "skills": {
-    "enabled": []
+  "private": {
+    "agentsDir": "private/agents",
+    "skillsDir": "private/skills"
   }
 }

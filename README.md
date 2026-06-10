@@ -1,38 +1,50 @@
 # Surf Coach
 
-A personalized AI-powered surf coach that helps you plan, track, and improve your surfing through a set of intelligent agents and skills.
+A personalized AI surf coach powered by Claude. It tracks your sessions, goals, and progression — and coaches you like a real coach would: directly, with context, and without bullshit.
 
-## What it does
+## How it works
 
-Surf Coach acts as your personal surf coach — it helps you:
+Everything runs through Claude Code skills (slash commands). The coach reads your data and responds based on what's actually there — your level, your goals, your recent sessions.
 
-- Define and track your surf goals
-- Log and review surf sessions
-- Analyse your progression over time
-- Plan training based on conditions, location, and your current level
-- Get personalised advice to reach your objectives faster
+## Quick start
+
+```
+/coach
+```
+
+That's it. The coach detects where you are and tells you what to do next.
+
+## Skills
+
+| Command | What it does |
+|---------|-------------|
+| `/coach` | Main coaching session — reads everything, coaches you |
+| `/setup-profile` | First-time profile setup or update |
+| `/setup-goals` | Define or update your surf goals |
+| `/log-session` | Log a session right after surfing |
+| `/reset` | Wipe athlete data, hand off to a new user |
 
 ## Structure
 
 ```
 surf-coach/
-├── agents/         # Autonomous agents (e.g. session analyser, goal tracker)
-├── skills/         # Claude Code skills for specific coaching tasks
-├── data/
-│   ├── sessions/   # Surf session logs
-│   ├── goals/      # Your surf goals and milestones
-│   └── profile/    # Your surfer profile (level, boards, home break, etc.)
-├── config/         # Configuration and settings
-└── docs/           # Documentation and guides
+├── shared/          # Coaching logic — athlete-agnostic, safe to share
+│   ├── agents/
+│   └── skills/
+├── private/         # Your data — local only, never committed
+│   ├── data/
+│   │   ├── sessions/
+│   │   ├── goals/
+│   │   └── profile/
+│   ├── agents/      # Your personal agents
+│   └── skills/      # Your personal skills
+├── .claude/skills/  # Claude Code skill definitions
+├── config/
+└── docs/
 ```
 
-## Getting started
-
-1. Fill in your surfer profile in `data/profile/`
-2. Set your goals in `data/goals/`
-3. Start logging sessions in `data/sessions/`
-4. Run skills and agents via Claude Code to get coaching insights
+`private/` is gitignored — your data stays on your machine.
 
 ## Philosophy
 
-Every surfer is different. This coach adapts to your level, your home break, your board quiver, and your goals — whether you're learning to pop up or chasing barrels.
+The coach knows your profile, your goals, and your session history. It won't give you generic surf tips. It will tell you what you actually need to work on, based on what you've actually been doing.
