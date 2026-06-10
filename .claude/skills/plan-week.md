@@ -12,10 +12,13 @@ Read all of the following silently before saying anything:
 1. `private/data/profile/profile.md` — level, home break, boards
 2. `private/data/goals/goals.md` — what they're working towards this week
 3. `private/data/metrics/metrics.md` — physical state, recovery baseline, training capacity
-4. `private/data/activities.md` — **read this carefully**: what activities are available AND when/how often they can be done
-5. `private/data/gym-programme.md` — if it exists, note the three session types (A/B/C) so you can assign the right one to each gym slot
-6. List `private/data/sessions/` and read the last 3 session logs — recent fatigue, patterns, what needs work
-7. List `private/data/plans/` — read last week's plan if it exists, note what was planned vs what actually happened
+4. `private/data/activities.md` — what activities are available AND when/how often they can be done
+5. `private/data/gym-programme.md` — if it exists, note the three session types (A/B/C) to assign per gym slot
+6. `private/data/nutrition-profile.md` — restrictions, preferences, goals, cooking capacity, shopping habits
+7. List `private/data/sessions/` and read the last 3 session logs — recent fatigue, patterns, what needs work
+8. List `private/data/plans/` — read last week's plan if it exists, note what was planned vs what actually happened
+
+If `private/data/nutrition-profile.md` does not exist, note it — you'll flag it to the athlete after the state check and suggest running `/setup-nutrition` before the next week's plan.
 
 Then fetch the surf forecast:
 - Search for the surf forecast for their home break for the next 7 days
@@ -105,6 +108,54 @@ Construct the week day by day using the constraint map from Step 2 and the rules
 
 ---
 
+## Nutrition planning
+
+Once the training schedule is built, generate the nutritional plan for the week. Base it entirely on the nutrition profile — restrictions, preferences, cooking capacity, and goals are hard constraints.
+
+### Nutrition principles by day type
+
+**Surf day (moderate)**
+- Pre-surf (1–2h before): easily digestible carbs + small protein. No heavy fat or fibre. Examples: oats with banana, toast with eggs, rice with chicken.
+- Post-surf (within 60 min): protein + fast carbs for recovery window. Examples: smoothie with protein, rice and fish, eggs on toast.
+- Rest of day: balanced meals, adequate protein, vegetables.
+
+**Surf day (intense / long session / big swell)**
+- Higher overall caloric intake — the body burns significantly more in 2–3h of active surfing.
+- Pre-surf: same as moderate but larger portion.
+- Post-surf: prioritise recovery — protein (30–40g), carbs, electrolytes (especially if sweating in wetsuit).
+- Hydration reminder: dehydration in the ocean is real and underestimated.
+
+**Gym day (Session A — Strength)**
+- Higher protein day. Pre-gym: carbs + moderate protein 1–2h before.
+- Post-gym: protein priority within 30–60 min.
+- Overall calories up if building muscle; maintained if performance focus.
+
+**Gym day (Session B — Functional)**
+- Moderate carbs, moderate protein. Similar to a surf day.
+
+**Gym day (Session C — Active Recovery)**
+- Lighter day. Focus on anti-inflammatory foods (omega-3, vegetables, berries) and hydration.
+
+**Rest day**
+- Lower carbs (less fuel needed), maintained protein (muscle repair continues).
+- Slightly lighter eating day if body composition is a goal — but never to the point of fatigue.
+- Evening: sleep-supporting foods (magnesium-rich: dark leafy greens, nuts, dark chocolate).
+
+**Combined surf + gym day**
+- Highest demand day. Don't undereat. Pre-surf nutrition takes priority.
+
+### Meal plan format
+For each day, suggest: breakfast, lunch, dinner, snacks (if training load warrants it), and pre/post session specifics where relevant.
+
+Keep meals realistic given the athlete's cooking capacity from their nutrition profile. If they have 15 minutes on weekdays, don't suggest a complex dinner. Lean on meals they said they enjoy.
+
+### Shopping list
+At the end of the plan, generate a consolidated shopping list grouped by category: produce, protein, carbs/grains, dairy or alternatives, pantry staples, extras. Quantities cover the full week. Flag items that need to be bought fresh mid-week if the athlete shops more than once per week.
+
+If no nutrition profile exists, skip this section and note: "Run `/setup-nutrition` to enable meal planning in future weekly plans."
+
+---
+
 ## Output — weekly plan
 
 Save to `private/data/plans/YYYY-WNN.md` (e.g. `2025-W23.md`).
@@ -124,19 +175,50 @@ Save to `private/data/plans/YYYY-WNN.md` (e.g. `2025-W23.md`).
 - Focus this week: [1 thing tied to active goals]
 
 ## Availability constraints applied
-[Brief note on any activities that couldn't be scheduled due to availability, or slots that were honoured — e.g. "Yoga scheduled Tue/Thu only per athlete's availability". Note which gym session type was assigned to each slot and why.]
+[Brief note on slots honoured, gym session types assigned and why, anything that didn't fit.]
+
+---
 
 ## Day-by-day plan
 
 ### Monday
-- **Activity:** [surf / gym / yoga / rest / active recovery / free surf]
+- **Training:** [surf / gym Session A|B|C / yoga / rest / active recovery / free surf]
 - **Time:** [morning / afternoon / evening]
 - **Details:** [specific focus, board, drill, workout, or recovery protocol]
+- **Nutrition:**
+  - Breakfast: [meal]
+  - Lunch: [meal]
+  - Dinner: [meal]
+  - Snacks: [if needed]
+  - Pre/post session: [if applicable]
 
 [repeat for each day of the week]
 
-## Notes
-[Coaching notes — what to watch for, what to protect, what to push this week]
+---
+
+## Coaching notes
+[What to watch for, what to protect, what to push this week]
+
+---
+
+## Shopping list
+
+### Produce
+- [item — quantity]
+
+### Protein
+- [item — quantity]
+
+### Carbs & grains
+- [item — quantity]
+
+### Dairy / alternatives
+- [item — quantity]
+
+### Pantry & extras
+- [item — quantity]
+
+> [flag any items that need to be bought fresh mid-week]
 ```
 
 After saving, walk the athlete through the plan. Highlight the priority surf session, explain why rest days are placed where they are, and call out any activities that didn't fit this week and why.

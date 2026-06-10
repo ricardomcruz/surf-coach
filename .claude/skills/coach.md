@@ -25,6 +25,7 @@ Then assess the state of the project:
 - **Profile + goals + metrics but no activities** → Suggest `/setup-activities` so the planner has something to work with.
 - **Profile + goals but no sessions** → You know who they are and what they want. Start the coaching conversation based on their goals and level. Ask about their recent surfing — when did they last surf? What happened?
 - **Activities exist but no gym programme** → If they gym, suggest running `/plan-gym` so the weekly planner can assign the right session type.
+- **No nutrition profile** → Suggest `/setup-nutrition` so weekly plans include meal planning and shopping lists.
 - **No plan for this week** → After the coaching read, suggest running `/plan-week`.
 - **All data present** → Full coaching mode (see below).
 
