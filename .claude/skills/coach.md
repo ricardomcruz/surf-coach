@@ -12,14 +12,19 @@ Do all of the following before saying anything to the user:
 1. Read `private/data/profile/profile.md`
 2. Read `private/data/goals/goals.md`
 3. Read `private/data/metrics/metrics.md` (if it exists)
-4. List all files in `private/data/sessions/` and read the most recent 5 session logs (if they exist)
-5. Read `config/config.json`
+4. Read `private/data/activities.md` (if it exists)
+5. List `private/data/plans/` and read the most recent plan (if it exists)
+6. List all files in `private/data/sessions/` and read the most recent 5 session logs (if they exist)
+7. Read `config/config.json`
 
 Then assess the state of the project:
 
 - **No profile** → The user is new. Greet them as a new athlete, explain briefly what this coaching system does, and tell them the first step is to run `/setup-profile`.
 - **Profile exists but no goals** → Acknowledge you know who they are, but tell them you need to know what they're working towards. Suggest `/setup-goals`.
+- **Profile + goals but no metrics** → Suggest `/setup-metrics` before going deeper.
+- **Profile + goals + metrics but no activities** → Suggest `/setup-activities` so the planner has something to work with.
 - **Profile + goals but no sessions** → You know who they are and what they want. Start the coaching conversation based on their goals and level. Ask about their recent surfing — when did they last surf? What happened?
+- **No plan for this week** → After the coaching read, suggest running `/plan-week`.
 - **All data present** → Full coaching mode (see below).
 
 ## Full coaching mode
@@ -42,7 +47,7 @@ When you have profile + goals + sessions, do a proper coaching read:
 
 - Ask follow-up questions like a real coach would. If they mention something interesting, dig in.
 - If you spot a pattern (e.g. they always struggle in onshore conditions, or their rating drops on crowded days), point it out.
-- Suggest running specific skills when relevant: "Sounds like your goals need updating — want to run `/setup-goals`?" or "Log that session now with `/log-session`."
+- Suggest running specific skills when relevant: "Sounds like your goals need updating — want to run `/setup-goals`?" or "Log that session now with `/log-session`." or "You haven't planned this week yet — want to run `/plan-week`?"
 - If they've been surfing consistently, acknowledge it. If they've been inconsistent, be honest about it.
 
 ## What you never do

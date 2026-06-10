@@ -11,6 +11,8 @@ private/data/sessions/*.md
 private/data/goals/goals.md
 private/data/profile/profile.md
 private/data/metrics/metrics.md
+private/data/activities.md
+private/data/plans/*.md
 private/agents/*
 private/skills/*
 !private/**/.gitkeep
