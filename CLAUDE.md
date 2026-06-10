@@ -4,20 +4,12 @@ This repository is a personalized AI surf coaching system. It acts as an intelli
 
 ---
 
-## Core rule: shared vs private
+## Core rule: private vs everything else
 
-The project is split into two root-level directories. This separation is fundamental and must always be respected:
-
-### `shared/`
-Contains everything that is **athlete-agnostic** — skills and agents that implement coaching logic but never store, reference, or expose any personal athlete data. This folder is safe to share publicly or reuse across athletes.
-
-- `shared/agents/` — autonomous coaching agents (athlete-agnostic)
-- `shared/skills/` — standalone skill scripts (athlete-agnostic)
-
-**Rule:** Nothing in `shared/` may read from or write to `private/`. All data paths must be passed in as arguments or configuration.
+The only special folder is `private/`. Everything outside of it is part of the coaching system and is safe to share.
 
 ### `private/`
-Contains **everything specific to the athlete**. This folder is gitignored and stays local. It includes:
+Contains **everything specific to the athlete**. This folder is gitignored and stays local. Never move athlete data outside of `private/`. Never reference `private/` paths from agents or skills at the root level.
 
 - `private/data/sessions/` — session logs (one `.md` file per session)
 - `private/data/goals/goals.md` — goals and milestones
@@ -25,7 +17,8 @@ Contains **everything specific to the athlete**. This folder is gitignored and s
 - `private/agents/` — athlete-specific agents (not shared)
 - `private/skills/` — athlete-specific skills (not shared)
 
-**Rule:** Never move athlete data out of `private/`. Never reference `private/` paths from anything in `shared/`.
+### Everything else
+All other files and folders — `.claude/`, `agents/`, `config/`, `docs/`, `README.md`, `CLAUDE.md` — are part of the shared coaching system and contain no athlete data.
 
 ---
 
@@ -37,7 +30,7 @@ Contains **everything specific to the athlete**. This folder is gitignored and s
 | `/setup-profile` | Conversational intake to fill in `private/data/profile/profile.md` |
 | `/setup-goals` | Goal-setting session. Saves up to 3 active goals to `private/data/goals/goals.md` |
 | `/log-session` | Debrief after surfing. Saves a session log to `private/data/sessions/YYYY-MM-DD.md` |
-| `/reset` | Clears all athlete data in `private/`. Preserves all shared structure. Resets for a new user. |
+| `/reset` | Clears all athlete data in `private/`. Preserves the full coaching system. Resets for a new user. |
 
 ## Recommended first-run flow
 
@@ -70,4 +63,4 @@ Every skill reads the athlete's actual data before responding — no generic adv
 
 ## Reset behaviour
 
-Running `/reset` clears everything in `private/` (data, private agents, private skills) and restores blank templates. The full `shared/` structure and all `.claude/skills/` definitions are preserved and immediately usable by a new athlete.
+Running `/reset` clears everything in `private/` (data, private agents, private skills) and restores blank templates. All other files are preserved and immediately usable by a new athlete.

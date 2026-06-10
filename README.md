@@ -28,9 +28,8 @@ That's it. The coach detects where you are and tells you what to do next.
 
 ```
 surf-coach/
-├── shared/          # Coaching logic — athlete-agnostic, safe to share
-│   ├── agents/
-│   └── skills/
+├── .claude/skills/  # Claude Code skill definitions
+├── agents/          # Shared coaching agents
 ├── private/         # Your data — local only, never committed
 │   ├── data/
 │   │   ├── sessions/
@@ -38,12 +37,11 @@ surf-coach/
 │   │   └── profile/
 │   ├── agents/      # Your personal agents
 │   └── skills/      # Your personal skills
-├── .claude/skills/  # Claude Code skill definitions
 ├── config/
 └── docs/
 ```
 
-`private/` is gitignored — your data stays on your machine.
+Everything outside `private/` is part of the coaching system and is safe to share. `private/` is gitignored — your data stays on your machine.
 
 ## Philosophy
 
