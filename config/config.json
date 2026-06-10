@@ -1,0 +1,18 @@
+{
+  "coach": {
+    "language": "en",
+    "units": "metric",
+    "sessionReminders": true
+  },
+  "data": {
+    "sessionsDir": "data/sessions",
+    "goalsFile": "data/goals/goals.md",
+    "profileFile": "data/profile/profile.md"
+  },
+  "agents": {
+    "enabled": []
+  },
+  "skills": {
+    "enabled": []
+  }
+}
