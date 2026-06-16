@@ -1,189 +1,189 @@
 # Surf Coach
 
-Um sistema de coaching pessoal para surfistas, construído sobre o Claude Code. Funciona como ter uma equipa de coaching disponível a qualquer hora — que te conhece, se lembra de tudo, e fica mais precisa quanto mais a usas.
+A personal coaching system for surfers, built on Claude Code. It works like having a coaching team available anytime — one that knows you, remembers everything, and gets more precise the more you use it.
 
 ---
 
-## O que é isto
+## What is this
 
-Imagina ter acesso a um coach de surf pessoal, mais uma equipa de 14 especialistas em background: psicólogo, fisioterapeuta, nutricionista, especialista em sono, coach de mobilidade, coach de ginásio, coach de técnica de surf, health coach, coach de respiração, médico de medicina chinesa, coach de periodização, life coach, médico psicossomático e guia espiritual.
+Imagine having access to a personal surf coach plus a team of 14 background specialists: psychologist, physiotherapist, nutritionist, sleep specialist, mobility coach, gym coach, surf technique coach, health coach, breathing coach, Chinese medicine doctor, periodization coach, life coach, psychosomatic doctor, and spiritual guide.
 
-Não falas com todos eles directamente. O teu coach de surf lê as avaliações deles antes de cada sessão e usa esse contexto para te dar coaching integrado — como um médico de família que fala com os especialistas antes da consulta.
+You don't talk to all of them directly. Your surf coach reads their assessments before each session and uses that context to give you integrated coaching — like a GP consulting specialists before your appointment.
 
-O sistema aprende contigo. Quanto mais sessions registares, mais preciso fica. Um coach com 3 sessões de dados é útil. Um coach com 30 sessões, métricas, objectivos e um programa de ginásio é outra coisa.
-
----
-
-## O que isto não é
-
-**Não substitui profissionais reais.** Quando algo precisa de uma análise de sangue, de mãos de um fisioterapeuta, ou de avaliação clínica, o sistema diz-te isso directamente e indica-te o caminho. Esse handoff é parte do como funciona, não uma limitação.
-
-**Não é um atalho.** Funciona na proporção do que lhe deres. Logs honestos e regulares fazem um sistema de coaching real. Uso superficial dá resultados superficiais.
-
-**Não é infalível.** Trabalha com o que reportas. Tu és a fonte de verdade — o sistema é o teu parceiro de pensamento, não a tua autoridade.
+The system learns with you. The more sessions you log, the more precise it becomes. A coach with 3 sessions of data is useful. A coach with 30 sessions, metrics, goals, and a structured gym program is something else entirely.
 
 ---
 
-## O que o torna diferente
+## What this is not
 
-**Memória que não apaga.** Cada sessão, cada métrica, cada observação fica disponível para sempre. Nunca tens de re-explicar a tua história. O coach retoma exactamente onde parou.
+**It doesn't replace real professionals.** When something needs a blood test, hands-on physiotherapy, or clinical evaluation, the system tells you that directly and points you toward help. That handoff is part of how it works, not a limitation.
 
-**Uma equipa que comunica.** Os especialistas lêem os relatórios uns dos outros antes de escreverem os seus. O fisioterapeuta sabe o que o coach de ginásio prescreveu. O health coach sabe o que o especialista em sono identificou. Este nível de integração não existe numa equipa humana real.
+**It's not a shortcut.** It works in proportion to what you give it. Honest, regular logs create real coaching. Superficial use yields superficial results.
 
-**Disponível sempre.** Às 23h antes de uma viagem de surf. Num dia de descanso quando queres pensar nos teus objectivos. Logo após sair da água enquanto a sessão ainda está fresca.
-
-**Honesto, não motivacional.** O coach diz-te quando estás a evitar o teu objectivo principal, quando a tua frequência de sessões não bate certo com as tuas ambições, e quando o que planeaste e o que fizeste não são a mesma coisa.
+**It's not infallible.** It works with what you report. You're the source of truth — the system is your thinking partner, not your authority.
 
 ---
 
-## Trade-offs honestos
+## What makes it different
 
-| O que o coaching AI faz bem | O que um coach humano faz melhor |
+**Memory that doesn't fade.** Every session, every metric, every observation stays available forever. You never have to re-explain your history. The coach picks up exactly where it left off.
+
+**A team that communicates.** Specialists read each other's reports before writing their own. The physiotherapist knows what the gym coach prescribed. The health coach knows what the sleep specialist found. This level of integration doesn't exist in real human teams.
+
+**Always available.** At 11pm before a surf trip. On a rest day when you want to think through your goals. Right after getting out of the water while the session is still fresh.
+
+**Honest, not motivational.** The coach tells you when you're avoiding your main goal, when your session frequency doesn't match your ambitions, and when what you planned and what you did aren't the same thing.
+
+---
+
+## Honest trade-offs
+
+| What AI coaching does well | What a human coach does better |
 |---|---|
-| Memória perfeita de todas as sessões | Ler a tua linguagem corporal e energia |
-| Equipa integrada que comunica | Observação física directa e avaliação hands-on |
-| Disponível sempre, sem marcações | Responsabilização real através de relação |
-| Sem ego nem agenda | Reconhecimento intuitivo de padrões ao longo de anos |
-| Custo dramaticamente menor | O efeito terapêutico da ligação humana |
+| Perfect memory of every session | Reading your body language and energy |
+| Integrated team that communicates | Direct physical observation and hands-on assessment |
+| Always available, no scheduling | Real accountability through relationship |
+| No ego or hidden agenda | Intuitive pattern recognition over years |
+| Dramatically lower cost | The therapeutic effect of human connection |
 
 ---
 
-## Pré-requisitos
+## Prerequisites
 
-- [Claude Code](https://claude.ai/code) instalado
-- Subscrição Claude Pro ou acima (necessário para o uso de agentes)
-- Git (para clonar e manter o repositório actualizado)
+- [Claude Code](https://claude.ai/code) installed
+- Claude Pro subscription or above (required for agent features)
+- Git (to clone and keep the repository up to date)
 
 ---
 
-## Como começar
+## Getting started
 
-### 1. Clonar o repositório
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/matildevonreis/surf-coach.git
+git clone https://github.com/ricardomcruz/surf-coach.git
 cd surf-coach
 ```
 
-### 2. Abrir no Claude Code
+### 2. Open in Claude Code
 
 ```bash
 claude
 ```
 
-### 3. Iniciar o coaching
+### 3. Start coaching
 
 ```
 /coach
 ```
 
-O coach detecta onde estás. Se é a primeira vez, explica o sistema e guia-te pelo setup passo a passo. Não precisas de saber mais nada para começar.
+The coach detects where you are. On first run, it explains the system and guides you through setup step by step. You don't need to know anything else to begin.
 
 ---
 
-## Fluxo de primeiro uso recomendado
+## Recommended first-use flow
 
-O `/coach` detecta automaticamente dados em falta e guia-te — mas se preferires fazer o setup na ordem óptima:
+`/coach` automatically detects missing data and guides you — but if you prefer to set up in the optimal order:
 
 ```
-/setup-profile     → quem és como surfista
-/setup-goals       → 1 a 3 objectivos concretos
-/setup-metrics     → baselines de saúde e performance
-/setup-activities  → o que treinas fora de água e quando
-/plan-gym          → programa de ginásio estruturado (tipos A/B/C)
-/setup-nutrition   → perfil nutricional e preferências
-/plan-week         → planear a primeira semana
+/setup-profile     → who you are as a surfer
+/setup-goals       → 1 to 3 concrete goals
+/setup-metrics     → health and performance baselines
+/setup-activities  → what you train out of water and when
+/plan-gym          → structured gym program (A/B/C session types)
+/setup-nutrition   → nutritional profile and preferences
+/plan-week         → plan your first week
 ```
 
-Depois: vai surfar → `/log-session` → volta ao `/coach`. Repete.
+Then: go surf → `/log-session` → return to `/coach`. Repeat.
 
 ---
 
-## Comandos disponíveis
+## Available commands
 
-| Comando | Para que serve |
+| Command | What it does |
 |---|---|
-| `/coach` | **Começa aqui.** Lê tudo e faz coaching contigo com base nos teus dados reais |
-| `/log-session` | Registar uma sessão de surf — logo a seguir a surfar |
-| `/plan-week` | Planear a semana completa: forecast, surf, ginásio, refeições, lista de compras |
-| `/consult [tema]` | Consulta multidisciplinar em profundidade sobre um tema específico (recuperação, técnica, saúde mental, hábitos, periodização) — 3 a 4 especialistas em sequência, cada um a ler o que o anterior escreveu |
-| `/spiritual` | Conversa directa com o guia espiritual — presença, a relação com o oceano, o que o surf significa |
-| `/setup-profile` | Configurar ou actualizar o perfil de surfista |
-| `/setup-goals` | Definir ou actualizar objectivos |
-| `/setup-metrics` | Registar métricas de saúde e performance |
-| `/setup-activities` | Registar actividades de treino disponíveis e disponibilidade |
-| `/plan-gym` | Criar programa de ginásio estruturado (força, funcional, recuperação activa) |
-| `/setup-nutrition` | Configurar perfil nutricional e preferências |
-| `/evolve` | Auditar e melhorar o próprio sistema de coaching — corre a cada 4–8 semanas |
-| `/reset` | Apagar dados do atleta (para recomeçar ou passar a outro utilizador) |
+| `/coach` | **Start here.** Reads everything and coaches you based on your actual data |
+| `/log-session` | Log a surf session — right after surfing |
+| `/plan-week` | Plan the full week: forecast, surf sessions, gym, meals, shopping list |
+| `/consult [topic]` | In-depth multidisciplinary consultation on a specific topic (recovery, technique, mental health, habits, periodization) — 3 to 4 specialists in sequence, each reading what the previous one wrote |
+| `/spiritual` | Direct conversation with the spiritual guide — presence, your relationship with the ocean, what surfing means |
+| `/setup-profile` | Configure or update your surfer profile |
+| `/setup-goals` | Set or update goals |
+| `/setup-metrics` | Log health and performance metrics |
+| `/setup-activities` | Log available training activities and time slots |
+| `/plan-gym` | Create structured gym program (strength, functional, active recovery) |
+| `/setup-nutrition` | Configure nutritional profile and food preferences |
+| `/evolve` | Audit and improve the coaching system itself — run every 4–8 weeks |
+| `/reset` | Clear all athlete data (to restart or switch to a new user) |
 
 ---
 
-## Os especialistas
+## The specialists
 
-O `/coach` orquestra uma equipa de 14 especialistas que trabalham em background:
+`/coach` orchestrates a team of 14 background specialists:
 
-| Especialista | Domínio |
+| Specialist | Domain |
 |---|---|
-| Psicólogo | Performance mental, stress, motivação, equilíbrio vida-surf |
-| Coach de mobilidade | Postura, qualidade de movimento, yoga, bloqueadores técnicos |
-| Nutricionista | Nutrição desportiva, composição corporal, recuperação |
-| Coach de ginásio | Força e condicionamento, carga de treino, periodização |
-| Coach de técnica de surf | Análise técnica, mecânica de manobras, progressão |
-| Coach de respiração | Respiração funcional, tolerância a CO2, preparação para hold-downs |
-| Especialista em sono | Ciência do sono, cronobiologia, recuperação noturna |
-| Fisioterapeuta | Prevenção de lesões, prehab, carga músculo-esquelética |
-| Coach de periodização | Arco de treino a longo prazo, mesociclos, janelas de swell |
-| Life coach | Formação de hábitos, rotinas diárias, mudança comportamental |
-| Health coach | Biohacking, suplementação, longevidade, HRV, inflamação sistémica |
-| Médico de medicina chinesa | Padrões TCM, equilíbrio energético, ritmos sazonais |
-| Médico psicossomático | Padrões mente-corpo, expressão somática do stress |
-| Guia espiritual | Presença, prática contemplativa, relação com o oceano |
+| Psychologist | Mental performance, stress, motivation, life-surf balance |
+| Mobility Coach | Posture, movement quality, yoga, technique blockers |
+| Nutritionist | Sports nutrition, body composition, recovery nutrition |
+| Gym Coach | Strength & conditioning, training load, periodization |
+| Surf Technique Coach | Technical analysis, maneuver biomechanics, progression |
+| Breathing Coach | Functional breathing, CO2 tolerance, hold-down prep |
+| Sleep Specialist | Sleep science, chronobiology, sleep architecture |
+| Physiotherapist | Injury prevention, prehab, musculoskeletal loading |
+| Periodization Coach | Long-term training arc, mesocycles, swell windows |
+| Life Coach | Habit formation, daily routines, behavioral change |
+| Health Coach | Biohacking, supplementation, longevity, HRV, systemic inflammation |
+| Chinese Medicine Doctor | TCM patterns, energetic balance, seasonal rhythms |
+| Psychosomatic Doctor | Mind-body patterns, somatic stress expression |
+| Spiritual Guide | Presence, contemplative practice, ocean relationship |
 
-Os especialistas lêem os relatórios uns dos outros antes de escreverem os seus — o fisioterapeuta sabe o que o coach de ginásio prescreveu, o health coach sabe o que o especialista em sono identificou. O coach de surf faz a síntese final.
-
----
-
-## O plano semanal em HTML
-
-O `/plan-week` gera automaticamente uma página HTML do plano da semana em `public/plans/`. Inclui forecast, sessões de surf, treinos, refeições e lista de compras — optimizada para usar no telemóvel antes de uma sessão, no ginásio, ou no supermercado.
-
-O sistema melhora-se a si próprio a cada semana: depois de gerar o plano, um agente de revisão lê a página, identifica problemas de usabilidade e actualiza a especificação de design para a semana seguinte.
+Specialists read each other's reports before writing their own — the physiotherapist knows what the gym coach prescribed, the health coach knows what the sleep specialist identified. The surf coach synthesizes it all.
 
 ---
 
-## Os teus dados
+## Weekly plan in HTML
 
-Tudo o que é teu fica na pasta `private/` no teu computador. Não é enviado para lado nenhum, não é partilhado, não aparece no git. O sistema de coaching (skills, agentes, configuração) é partilhável — os teus dados não são.
+`/plan-week` automatically generates an HTML page of your weekly plan in `public/plans/`. It includes forecast, surf sessions, workouts, meals, and shopping list — optimized for your phone before a session, at the gym, or at the supermarket.
+
+The system improves itself every week: after generating the plan, a review agent reads the page, identifies usability issues, and updates the design spec for next week.
+
+---
+
+## Your data
+
+Everything that's yours lives in the `private/` folder on your computer. It's not sent anywhere, not shared, not in git. The coaching system (skills, agents, config) is shareable — your data is not.
 
 ```
 private/
   data/
-    sessions/          → um ficheiro por sessão de surf
-    goals/             → objectivos activos
-    profile/           → perfil de surfista
-    metrics/           → snapshots de saúde e performance
-    plans/             → planos semanais em markdown e HTML
-    specialist-reports/→ relatórios dos especialistas por sessão
-    activities.md      → actividades e disponibilidade
-    gym-programme.md   → programa de ginásio
-    nutrition-profile.md → perfil nutricional
+    sessions/          → one file per surf session
+    goals/             → active goals
+    profile/           → surfer profile
+    metrics/           → health and performance snapshots
+    plans/             → weekly plans in markdown and HTML
+    specialist-reports/→ specialist assessments per session
+    activities.md      → available training and time slots
+    gym-programme.md   → gym program
+    nutrition-profile.md → nutritional profile
 ```
 
 ---
 
-## Como tirar partido ao máximo
+## Getting the most out of it
 
-1. **Regista sessões a seguir a surfar.** Enquanto é fresco. Com honestidade — o que não correu bem importa tanto como o que correu.
-2. **Faz o setup com atenção.** Os primeiros passos podem parecer lentos. Não são. Cada campo que preenchas torna cada sessão futura mais precisa.
-3. **Volta regularmente.** O valor acumula com o tempo. Três meses de dados são qualitativamente diferentes de três semanas.
-4. **Traz perguntas reais.** Física, mental, técnica, vida — o sistema está preparado para complexidade.
-5. **Usa `/consult` quando algo é persistente.** Se há um padrão que não resolve, uma lesão recorrente, ou um bloqueio mental — o modo de consulta aprofunda onde o `/coach` generaliza.
+1. **Log sessions right after surfing.** While it's fresh. With honesty — what didn't go well matters as much as what did.
+2. **Set up carefully.** The first steps can feel slow. They're not. Every field you fill makes every future session more precise.
+3. **Come back regularly.** Value accumulates over time. Three months of data is qualitatively different from three weeks.
+4. **Bring real questions.** Physical, mental, technical, life — the system is built for complexity.
+5. **Use `/consult` when something persists.** If there's a pattern that won't resolve, a recurring injury, or a mental block — the consultation mode goes deeper than `/coach` generalizes.
 
 ---
 
-## A filosofia
+## The philosophy
 
-O melhor coaching não é o mais entusiasta. É o mais preciso. Um coach que te conhece — os teus padrões, as tuas evasões, a tua capacidade real versus a que declaras — pode dizer menos e significar mais.
+The best coaching isn't the most enthusiastic. It's the most precise. A coach that knows you — your patterns, your avoidances, your real capacity versus what you claim — can say less and mean more.
 
-É isso que este sistema está desenhado para ser.
+That's what this system is designed to be.
