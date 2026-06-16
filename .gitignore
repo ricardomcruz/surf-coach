@@ -16,6 +16,12 @@ private/data/evolution-log.md
 private/data/gym-programme.md
 private/data/nutrition-profile.md
 private/data/plans/*.md
+private/data/plans/*.html
+private/data/surf-spots.md
+private/data/metrics/body-measurements.md
+private/data/metrics/*/
 private/agents/*
 private/skills/*
+private/data/specialist-reports/**/*.md
+private/data/pending-setup.md
 !private/**/.gitkeep

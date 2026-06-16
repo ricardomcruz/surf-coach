@@ -124,6 +124,58 @@ Are current skills and documentation production-quality?
 - Any skills that don't connect to data they should be reading?
 - Any documentation in CLAUDE.md or README that is outdated or missing?
 
+### Dimension 7 — MCP integrations and friction reduction
+
+The goal is to minimise the time and effort the athlete spends interacting with the system, while maximising the value they get from it. More data should flow in automatically. More outputs should reach the athlete without them needing to navigate files.
+
+**Audit available MCP servers in this environment:**
+List the MCP servers currently available (check system context for available tools with `mcp__` prefix). For each available MCP, ask: could this meaningfully improve the athlete's experience or data quality?
+
+**Key integration categories to investigate:**
+
+*Calendar (Google Calendar or similar):*
+- Can `/plan-week` automatically create calendar events for surf sessions, gym sessions, and recovery practices after generating the plan?
+- Would the athlete benefit from having the week already blocked in their calendar without any additional action?
+
+*Email (Gmail or similar):*
+- Can the weekly HTML plan be automatically emailed to the athlete after `/plan-week` runs?
+- Can the `/coach` send a weekly summary or goal check-in email?
+
+*Surf forecast APIs:*
+- Is a dedicated surf forecast API available or configurable (Stormglass, Windguru, Surfline, Open-Meteo)?
+- Would replacing web search with a structured API give more reliable, spot-specific forecast data for `/plan-week`?
+
+*Health and biometric data:*
+- Can Apple Health, Garmin, Whoop, or HRV4Training data be pulled automatically into the metrics system?
+- For this athlete specifically: Apple Watch SE data (HRV, resting HR, sleep) is currently entered manually. Automatic ingestion would keep the coaching picture current without `/setup-metrics` sessions.
+
+*Messaging and voice:*
+- Could a WhatsApp, Telegram, or SMS integration allow the athlete to log sessions or check in via voice message or text — without opening Claude Code?
+- A voice-first or message-first interface would dramatically reduce friction for session logging (done immediately after surfing, not hours later).
+
+*Storage and sharing:*
+- Can Google Drive or similar be used to share the weekly HTML plan, making it accessible without GitHub Pages setup?
+
+*Notifications and reminders:*
+- Can the system send proactive notifications (push, email, or message) for: "You have surf planned tomorrow — log your recovery state tonight", "It's Monday and no plan has been generated yet", "3 days since your last session — log it before it fades"?
+
+**Friction audit — current interaction pain points:**
+For each skill, ask: what does the athlete have to do manually that could be automated, pre-filled, or eliminated?
+
+- `/setup-metrics` — could biometric data be pre-populated from a connected device?
+- `/log-session` — could conditions data be pre-filled from surf forecast at that location/time?
+- `/plan-week` — could availability be pre-filled from calendar data?
+- Weekly plan delivery — does the athlete need to navigate files, or can it come to them?
+
+**The test question for every proposed integration:**
+"Does this reduce something the athlete has to remember, do, or navigate — while maintaining or improving data quality?" If yes, it's worth proposing. If it adds steps or complexity, don't propose it.
+
+**Proposal format for integrations:**
+Use the same proposal format as other dimensions, but add:
+- **MCP/tool required:** which MCP server or external tool is needed
+- **Availability:** is the required MCP currently available in this environment?
+- **Implementation complexity:** does it require MCP setup by the user, or can it be done purely in skill logic?
+
 ---
 
 ## Phase 3 — Generate proposals
@@ -132,7 +184,7 @@ From your gap analysis, generate a prioritised proposal list. For each proposal:
 
 ```
 ### Proposal N — [Title]
-**Type:** New skill / New agent / Skill improvement / Coach upgrade / Integration fix / Documentation
+**Type:** New skill / New agent / Skill improvement / Coach upgrade / Integration fix / MCP integration / Friction reduction / Documentation
 **Priority:** High / Medium / Low
 **Athlete relevance:** [Why this matters specifically for this athlete right now]
 **What it does:** [Clear description of the improvement]

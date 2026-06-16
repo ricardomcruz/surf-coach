@@ -10,7 +10,10 @@ Not every athlete has a wearable. That's fine. Work with what they have — even
 ## On startup
 
 Read `private/data/profile/profile.md` if it exists, so you know who you're talking to.
-Read `private/data/metrics/metrics.md` if it exists — if there's already data, tell the athlete what you have and ask if they want to update it.
+
+List `private/data/metrics/` — look for dated subfolders (format: `YYYY-MM-DD`). If any exist, read the most recent folder's `metrics.md` — if there's already data, tell the athlete what you have and ask if they want to add a new entry.
+
+Read `private/data/metrics/body-measurements.md` if it exists — show the athlete their measurement history as a table so they can see trends before adding today's entry.
 
 ---
 
@@ -52,7 +55,7 @@ Why it matters: influences natural stance width and paddle mechanics.
 
 ### Category 2 — Postural analysis
 
-You don't have access to photos, but you can build an accurate postural picture through targeted questions. Ask these one at a time, framing each as something a coach would notice watching them surf or move on land.
+Build the postural picture through targeted questions. At the end of the session you'll also guide the athlete to take reference photos — but the verbal assessment comes first and stands on its own. Ask these one at a time, framing each as something a coach would notice watching them surf or move on land.
 
 **Stance and base**
 - In their natural surf stance, do their feet feel close together or wide apart?
@@ -213,11 +216,62 @@ Write a complete `private/data/metrics/metrics.md` file with the following struc
 [Your honest 2–3 sentence assessment of what the full picture reveals about this athlete — physical, postural, and mental — and the single most important thing to address]
 ```
 
-## After saving
+## After collecting all data — save the entry
 
-Tell the athlete the file is saved. Then give them your honest coach's read in conversation — what do the metrics tell you? What's the biggest lever for them right now: sleep, recovery, training load, stress?
+Save the full metrics snapshot to `private/data/metrics/[today's date]/metrics.md` (e.g. `private/data/metrics/2026-06-10/metrics.md`). Create the dated folder if it doesn't exist.
 
-Suggest that from now on they can update this file after a recovery device sync or whenever their state changes significantly. Also mention that `/log-session` will start asking for a daily metric snapshot when logging sessions.
+Use the same metrics.md format as above, unchanged.
+
+**Do not overwrite** any previous dated folder — each entry is a permanent record.
+
+---
+
+## After saving — update the measurements summary table
+
+Append the body composition data to `private/data/metrics/body-measurements.md` (at the root of the metrics folder, not inside the dated subfolder).
+
+If the file doesn't exist, create it with this header:
+
+```markdown
+# Body Measurements — Summary Table
+
+One row per entry. Compare across dates to track body composition trends.
+
+| Date | Weight | Body Fat % | Waist | Hips | Chest | Bicep | Thigh | Waist/Hip |
+|------|--------|------------|-------|------|-------|-------|-------|-----------|
+```
+
+Append a new row with today's values. Leave cells empty if data wasn't collected — don't invent numbers.
+
+---
+
+## After saving — reference photos
+
+Guide the athlete to take and save reference photos to the same dated folder. These are used by the mobility coach and main coach to assess posture and track conditioning over time.
+
+Tell them:
+
+> "O último passo são as fotos de referência. Não são para vaidade — são um registo postural e de condicionamento. Daqui a 3–6 meses vais comparar com as novas e a diferença vai ser visível antes de a sentires.
+>
+> Tira 3 fotos:
+> - **Frente**: de pé relaxado, braços ligeiramente afastados do corpo, a olhar em frente
+> - **Costas**: mesma posição, de costas para a câmara
+> - **Lateral**: de perfil relaxado, braços ao longo do corpo (qualquer lado)
+>
+> Guarda-as em: `private/data/metrics/[data de hoje]/`
+> Com estes nomes: `front.jpg`, `back.jpg`, `side.jpg`
+>
+> Qualquer formato funciona (jpg, jpeg, png, heic). A pasta é a data — por exemplo `2026-06-10`."
+
+Remind them the photos stay in `private/` and are never committed to git.
+
+---
+
+## Final coaching read
+
+Give your honest coach's read in conversation — what do the metrics tell you? What's the biggest lever for them right now: sleep, recovery, training load, stress?
+
+Suggest updating metrics every 4 weeks, or after a significant change (new training block, injury, surftrip). Measurements and photos on the same cycle — monthly is enough to see meaningful change.
 
 ## Tone
 
