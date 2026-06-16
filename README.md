@@ -1,12 +1,12 @@
 # Surf Coach
 
-Um sistema de coaching pessoal para surfistas. Funciona como ter uma equipa de coaching disponível a qualquer hora — que te conhece, se lembra de tudo, e fica mais precisa quanto mais a usas.
+Um sistema de coaching pessoal para surfistas, construído sobre o Claude Code. Funciona como ter uma equipa de coaching disponível a qualquer hora — que te conhece, se lembra de tudo, e fica mais precisa quanto mais a usas.
 
 ---
 
 ## O que é isto
 
-Imagina ter acesso a um coach de surf pessoal, mais uma equipa de especialistas em background: psicólogo, fisioterapeuta, nutricionista, especialista em sono, coach de mobilidade, coach de ginásio, coach de técnica de surf, health coach, coach de respiração, médico de medicina chinesa, coach de periodização, life coach, médico psicossomático e guia espiritual.
+Imagina ter acesso a um coach de surf pessoal, mais uma equipa de 14 especialistas em background: psicólogo, fisioterapeuta, nutricionista, especialista em sono, coach de mobilidade, coach de ginásio, coach de técnica de surf, health coach, coach de respiração, médico de medicina chinesa, coach de periodização, life coach, médico psicossomático e guia espiritual.
 
 Não falas com todos eles directamente. O teu coach de surf lê as avaliações deles antes de cada sessão e usa esse contexto para te dar coaching integrado — como um médico de família que fala com os especialistas antes da consulta.
 
@@ -48,19 +48,30 @@ O sistema aprende contigo. Quanto mais sessions registares, mais preciso fica. U
 
 ---
 
-## Como tirar partido ao máximo
+## Pré-requisitos
 
-1. **Regista sessões a seguir a surfar.** Enquanto é fresco. Com honestidade — o que não correu bem importa tanto como o que correu.
-2. **Faz o setup com atenção.** Os primeiros passos podem parecer lentos. Não são. Cada campo que preenchas torna cada sessão futura mais precisa.
-3. **Volta regularmente.** O valor acumula com o tempo. Três meses de dados são qualitativamente diferentes de três semanas.
-4. **Traz perguntas reais.** Física, mental, técnica, vida — o sistema está preparado para complexidade.
-5. **Não ignores os dados.** Se o teu estado de recuperação diz para descansar, descansa. O valor dos dados é darem-te permissão para ouvir o corpo sem culpa.
+- [Claude Code](https://claude.ai/code) instalado
+- Subscrição Claude Pro ou acima (necessário para o uso de agentes)
+- Git (para clonar e manter o repositório actualizado)
 
 ---
 
 ## Como começar
 
-Abre o Claude Code e escreve:
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/matildevonreis/surf-coach.git
+cd surf-coach
+```
+
+### 2. Abrir no Claude Code
+
+```bash
+claude
+```
+
+### 3. Iniciar o coaching
 
 ```
 /coach
@@ -70,29 +81,104 @@ O coach detecta onde estás. Se é a primeira vez, explica o sistema e guia-te p
 
 ---
 
-## Comandos disponíveis
+## Fluxo de primeiro uso recomendado
 
-Escreve qualquer um destes no chat:
+O `/coach` detecta automaticamente dados em falta e guia-te — mas se preferires fazer o setup na ordem óptima:
+
+```
+/setup-profile     → quem és como surfista
+/setup-goals       → 1 a 3 objectivos concretos
+/setup-metrics     → baselines de saúde e performance
+/setup-activities  → o que treinas fora de água e quando
+/plan-gym          → programa de ginásio estruturado (tipos A/B/C)
+/setup-nutrition   → perfil nutricional e preferências
+/plan-week         → planear a primeira semana
+```
+
+Depois: vai surfar → `/log-session` → volta ao `/coach`. Repete.
+
+---
+
+## Comandos disponíveis
 
 | Comando | Para que serve |
 |---|---|
-| `/coach` | Sessão de coaching — lê tudo e faz coaching contigo |
-| `/setup-profile` | Configurar ou actualizar o teu perfil de surfista |
-| `/setup-goals` | Definir ou actualizar os teus objectivos |
+| `/coach` | **Começa aqui.** Lê tudo e faz coaching contigo com base nos teus dados reais |
+| `/log-session` | Registar uma sessão de surf — logo a seguir a surfar |
+| `/plan-week` | Planear a semana completa: forecast, surf, ginásio, refeições, lista de compras |
+| `/consult [tema]` | Consulta multidisciplinar em profundidade sobre um tema específico (recuperação, técnica, saúde mental, hábitos, periodização) — 3 a 4 especialistas em sequência, cada um a ler o que o anterior escreveu |
+| `/spiritual` | Conversa directa com o guia espiritual — presença, a relação com o oceano, o que o surf significa |
+| `/setup-profile` | Configurar ou actualizar o perfil de surfista |
+| `/setup-goals` | Definir ou actualizar objectivos |
 | `/setup-metrics` | Registar métricas de saúde e performance |
-| `/setup-activities` | Registar actividades de treino disponíveis |
-| `/plan-gym` | Criar programa de ginásio estruturado |
+| `/setup-activities` | Registar actividades de treino disponíveis e disponibilidade |
+| `/plan-gym` | Criar programa de ginásio estruturado (força, funcional, recuperação activa) |
 | `/setup-nutrition` | Configurar perfil nutricional e preferências |
-| `/plan-week` | Planear a semana de treino completa |
-| `/log-session` | Registar uma sessão de surf |
-| `/evolve` | Auditar e melhorar o próprio sistema de coaching |
-| `/reset` | Apagar dados do atleta (para novo utilizador) |
+| `/evolve` | Auditar e melhorar o próprio sistema de coaching — corre a cada 4–8 semanas |
+| `/reset` | Apagar dados do atleta (para recomeçar ou passar a outro utilizador) |
+
+---
+
+## Os especialistas
+
+O `/coach` orquestra uma equipa de 14 especialistas que trabalham em background:
+
+| Especialista | Domínio |
+|---|---|
+| Psicólogo | Performance mental, stress, motivação, equilíbrio vida-surf |
+| Coach de mobilidade | Postura, qualidade de movimento, yoga, bloqueadores técnicos |
+| Nutricionista | Nutrição desportiva, composição corporal, recuperação |
+| Coach de ginásio | Força e condicionamento, carga de treino, periodização |
+| Coach de técnica de surf | Análise técnica, mecânica de manobras, progressão |
+| Coach de respiração | Respiração funcional, tolerância a CO2, preparação para hold-downs |
+| Especialista em sono | Ciência do sono, cronobiologia, recuperação noturna |
+| Fisioterapeuta | Prevenção de lesões, prehab, carga músculo-esquelética |
+| Coach de periodização | Arco de treino a longo prazo, mesociclos, janelas de swell |
+| Life coach | Formação de hábitos, rotinas diárias, mudança comportamental |
+| Health coach | Biohacking, suplementação, longevidade, HRV, inflamação sistémica |
+| Médico de medicina chinesa | Padrões TCM, equilíbrio energético, ritmos sazonais |
+| Médico psicossomático | Padrões mente-corpo, expressão somática do stress |
+| Guia espiritual | Presença, prática contemplativa, relação com o oceano |
+
+Os especialistas lêem os relatórios uns dos outros antes de escreverem os seus — o fisioterapeuta sabe o que o coach de ginásio prescreveu, o health coach sabe o que o especialista em sono identificou. O coach de surf faz a síntese final.
+
+---
+
+## O plano semanal em HTML
+
+O `/plan-week` gera automaticamente uma página HTML do plano da semana em `public/plans/`. Inclui forecast, sessões de surf, treinos, refeições e lista de compras — optimizada para usar no telemóvel antes de uma sessão, no ginásio, ou no supermercado.
+
+O sistema melhora-se a si próprio a cada semana: depois de gerar o plano, um agente de revisão lê a página, identifica problemas de usabilidade e actualiza a especificação de design para a semana seguinte.
 
 ---
 
 ## Os teus dados
 
-Tudo o que é teu fica na pasta `private/` no teu computador. Não é enviado para lado nenhum, não é partilhado, não aparece no git. O sistema de coaching é partilhável — os teus dados não são.
+Tudo o que é teu fica na pasta `private/` no teu computador. Não é enviado para lado nenhum, não é partilhado, não aparece no git. O sistema de coaching (skills, agentes, configuração) é partilhável — os teus dados não são.
+
+```
+private/
+  data/
+    sessions/          → um ficheiro por sessão de surf
+    goals/             → objectivos activos
+    profile/           → perfil de surfista
+    metrics/           → snapshots de saúde e performance
+    plans/             → planos semanais em markdown e HTML
+    specialist-reports/→ relatórios dos especialistas por sessão
+    activities.md      → actividades e disponibilidade
+    gym-programme.md   → programa de ginásio
+    nutrition-profile.md → perfil nutricional
+```
+
+---
+
+## Como tirar partido ao máximo
+
+1. **Regista sessões a seguir a surfar.** Enquanto é fresco. Com honestidade — o que não correu bem importa tanto como o que correu.
+2. **Faz o setup com atenção.** Os primeiros passos podem parecer lentos. Não são. Cada campo que preenchas torna cada sessão futura mais precisa.
+3. **Volta regularmente.** O valor acumula com o tempo. Três meses de dados são qualitativamente diferentes de três semanas.
+4. **Traz perguntas reais.** Física, mental, técnica, vida — o sistema está preparado para complexidade.
+5. **Usa `/consult` quando algo é persistente.** Se há um padrão que não resolve, uma lesão recorrente, ou um bloqueio mental — o modo de consulta aprofunda onde o `/coach` generaliza.
 
 ---
 
