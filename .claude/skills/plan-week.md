@@ -26,19 +26,90 @@ Then fetch the surf forecast and select spots:
 **Step A — Read spot knowledge**
 Read `private/data/surf-spots.md`. This is your spot database — priority order, characteristics, goal-based modifiers, and energy-state modifiers. If the file doesn't exist, fall back to the profile's home break.
 
-**Step B — Fetch forecasts via Open-Meteo Marine API**
+**Step B — Fetch surf forecast**
 
-Use WebFetch to call the Open-Meteo Marine API directly for Ricardo's spots. This is a free, structured JSON API — no key needed.
+Read `private/config/integrations.md` first. If `STORMGLASS_API_KEY` is set (not the placeholder), use Stormglass as primary. Otherwise fall back to Open-Meteo.
+
+---
+
+**PRIMARY: Stormglass API (wave + tide data)**
+
+Use Bash with curl — Stormglass requires an Authorization header that WebFetch cannot send.
+
+Extract the key from `private/config/integrations.md`. Then call:
+
+**Wave + wind** (once per spot needed, 7-day window):
+```bash
+curl -s "https://api.stormglass.io/v2/weather/point?lat={LAT}&lng={LON}&params=waveHeight,wavePeriod,waveDirection,swellHeight,swellPeriod,swellDirection,windSpeed,windDirection&start={ISO_DATE}T05:00:00Z&end={ISO_DATE_PLUS_7}T22:00:00Z" \
+  -H "Authorization: {STORMGLASS_API_KEY}"
+```
+
+**Tide extremes** (once for the week — Carcavelos coords valid for all nearby spots):
+```bash
+curl -s "https://api.stormglass.io/v2/tide/extremes/point?lat=38.7012&lng=-9.3394&start={ISO_DATE}T00:00:00Z&end={ISO_DATE_PLUS_7}T23:59:00Z" \
+  -H "Authorization: {STORMGLASS_API_KEY}"
+```
+
+**Moon phase** (once for the week — needed to classify maré viva vs morta):
+```bash
+curl -s "https://api.stormglass.io/v2/astronomy/point?lat=38.7012&lng=-9.3394&start={ISO_DATE}T00:00:00Z&end={ISO_DATE_PLUS_7}T23:59:00Z" \
+  -H "Authorization: {STORMGLASS_API_KEY}"
+```
+
+**Request budget:** wave Carcavelos (1) + tide extremes (1) + moon phase (1) + wave Caparica if needed (1). Total: 3-4 requests of the 10 free daily limit.
+
+---
+
+**Interpreting tide data — maré viva vs maré morta**
+
+From the tide extremes response, calculate the tidal range for each day:
+`range = high_height - low_height` (using absolute values)
+
+For the Cascais/Carcavelos area, classify as:
+- **Maré viva** (sizígia): range ≥ 2.8m — occurs ~2 days before and after full moon (lua cheia) and new moon (lua nova)
+- **Maré intermédia**: range 1.8–2.8m
+- **Maré morta** (quadratura): range ≤ 1.8m — occurs around quarter moons
+
+Cross-check with moon phase from the astronomy endpoint: `moonPhase` value 0 = new moon, 0.5 = full moon, 0.25/0.75 = quarter moons. Spring tides lag the moon by ~2 days.
+
+**Why this matters for session planning:**
+
+| Tipo de maré | Impacto em Carcavelos e Caparica |
+|---|---|
+| Maré viva + preia-mar | Praia muito coberta de água — ondas fecham, fundos cobertos, menos forma. Evitar as 2h em torno da preia-mar. |
+| Maré viva + baixa-mar | Fundos expostos, maior distância de rebentação, às vezes melhor forma. Janela mais longa antes da maré encher. |
+| Maré morta | Amplitude pequena — menos sensível à hora exacta. Mais fácil de planear. Qualquer estado de maré funciona razoavelmente. |
+| Preia-mar em qualquer maré | Rebentação mais perto da praia, ondas mais espessas. Melhor para take-offs rápidos (Goal 1). |
+| Baixa-mar em qualquer maré | Rebentação mais longe, ondas mais longas. Melhor para trabalho técnico (Goals 2 e 3). |
+
+**Add to each surf day in the plan:**
+```
+Maré: Baixa 06h12 (0.4m) → Alta 12h28 (3.3m) → Baixa 18h45 (0.3m)
+Amplitude: 2.9m — MARÉ VIVA ⚠️ (lua cheia D-2)
+Janela recomendada: 7h–10h (antes da preia-mar encher — melhor forma disponível)
+```
+
+If it's maré viva and the planned session overlaps with preia-mar, flag it explicitly and suggest a better window if one exists that day.
+
+---
+
+**FALLBACK: Open-Meteo (no key required — no tide data)**
+
+Use if Stormglass key is missing or the curl call returns an error.
 
 **Marine data** (wave height, period, direction — call once per spot):
 ```
 https://marine-api.open-meteo.com/v1/marine?latitude={LAT}&longitude={LON}&hourly=wave_height,wave_period,wave_direction,swell_wave_height,swell_wave_period,swell_wave_direction&timezone=Europe%2FLisbon&forecast_days=7
 ```
 
-**Wind data** (call once for the region — Carcavelos coords suffice for wind):
+**Wind data** (call once for the region):
 ```
 https://api.open-meteo.com/v1/forecast?latitude=38.70&longitude=-9.34&hourly=wind_speed_10m,wind_direction_10m,wind_gusts_10m&timezone=Europe%2FLisbon&forecast_days=7
 ```
+
+Note in the plan: "Dados de maré não disponíveis — Stormglass key não configurada. Ver `private/config/integrations.md`."
+
+---
 
 **Spot coordinates:**
 | Spot | Latitude | Longitude |
@@ -48,16 +119,14 @@ https://api.open-meteo.com/v1/forecast?latitude=38.70&longitude=-9.34&hourly=win
 | Costa da Caparica | 38.6400 | -9.2458 |
 | Fonte da Telha | 38.5845 | -9.2071 |
 
-Fetch Carcavelos always. Fetch Caparica if conditions are borderline or Goal 1 training is planned. Interpret the JSON response: extract wave_height (m), wave_period (s), wave_direction (°), swell data, and wind speed/direction per hour. Summarise into a readable per-day format for each spot.
-
-**Fallback:** If the API call fails, use WebFetch on `pt.surf-forecast.com` for the spot, or WebSearch as last resort.
+Fetch Carcavelos always. Fetch Caparica if conditions are borderline or Goal 1 training is planned. Interpret the JSON response: extract wave_height (m), wave_period (s), wave_direction (°), swell data, wind speed/direction, and tide times per day. Summarise into a readable per-day format.
 
 **Step C — Evidence-based spot decision**
 
 For each day with a surf session, run this decision process in order:
 
 **C1 — Extract the forecast fingerprint for that day**
-From the API data, note: swell direction, wave height, wave period, wind direction, wind speed, and tide state (high/low/rising/falling — approximate from the hour if not explicit). This fingerprint is what you'll match against past sessions.
+From the API data, note: swell direction, wave height, wave period, wind direction, wind speed, tide state (high/low/rising/falling), tidal range (maré viva/morta), and moon phase. This fingerprint is what you'll match against past sessions.
 
 **C2 — Search "Regras aprendidas" for matching past sessions**
 In `surf-spots.md`, read the "Regras aprendidas" table for each candidate spot. For each past row, assess similarity to today's forecast fingerprint:
@@ -339,13 +408,13 @@ Regras:
 
 After saving the markdown plan, invoke the `html-engineer` agent to generate the HTML version:
 
-> "The markdown plan has been saved to `private/data/plans/YYYY-WNN.md`. Read it along with the athlete's profile, goals, gym programme, specialist-reports/psychologist/latest.md, and the most recent metrics. If `private/data/plans/template-spec.md` exists, implement it exactly. Generate a complete self-contained HTML page and save it to both `private/data/plans/YYYY-WNN.html` and `public/plans/YYYY-WNN.html`."
+> "The markdown plan has been saved to `private/data/plans/YYYY-WNN.md`. Read it along with the athlete's profile, goals, gym programme, specialist-reports/psychologist/latest.md, and the most recent metrics. If `private/data/plans/template-spec.md` exists, implement it exactly. Generate a complete self-contained HTML page and save it to `private/data/plans/YYYY-WNN.html` only. Never write to `public/`."
 
 Then walk the athlete through the plan. Highlight the priority surf session, explain why rest days are placed where they are, and call out any activities that didn't fit this week and why.
 
 ## After presenting the plan
 
-Ask: "Does this work, or do we need to move anything?"
+Ask explicitly: **"Este plano funciona? Há algo a ajustar?"**
 
 **If adjustments are needed:** Update the `.md` file. Only re-invoke `html-engineer` if the schedule itself changed (different days, sessions added/removed, meal plan modified). For minor text edits or coaching note tweaks, skip the HTML regeneration — it's the most expensive operation in the system.
 
@@ -353,7 +422,9 @@ Then remind them: log every session with `/log-session` — without the data com
 
 ## After the athlete approves the plan
 
-Once the plan is finalised and the athlete has no further adjustments, invoke the `plan-week-reviewer` agent silently:
+**CRITICAL:** Do NOT invoke the reviewer until the athlete explicitly confirms the plan is final — with words like "está bom", "aprovado", "sim", or similar. Mid-conversation adjustments do not count as approval. Only after explicit confirmation proceed.
+
+Once the plan is finalised and the athlete has confirmed, invoke the `plan-week-reviewer` agent silently:
 
 > "The weekly plan HTML has been generated at `private/data/plans/YYYY-WNN.html`. Review it from Ricardo's real use-case perspective — phone before surf, at the gym, at the supermarket, Sunday planning. Read his profile and goals first. Generate a design feedback report at `private/data/plans/design-feedback.md` and then invoke the product-designer to update the template spec. This runs in the background — the athlete does not need to wait."
 

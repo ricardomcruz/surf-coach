@@ -5,8 +5,13 @@ node_modules/
 __pycache__/
 *.pyc
 
+# Local settings with API keys and personal paths — never commit
+.claude/settings.local.json
+
 # Private athlete content — local only, never commit
 private/data/sessions/*.md
+private/data/sessions/*.html
+private/data/sessions/assets/
 !private/data/sessions/template.md
 private/data/goals/goals.md
 private/data/profile/profile.md
@@ -24,4 +29,6 @@ private/agents/*
 private/skills/*
 private/data/specialist-reports/**/*.md
 private/data/pending-setup.md
+private/config/
+private/data/consult/
 !private/**/.gitkeep
