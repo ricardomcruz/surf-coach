@@ -83,7 +83,8 @@ Three additional agents handle the generation and continuous improvement of the 
 | `/plan-gym` | Creates a structured gym programme with 3 session types: A (Strength/Power), B (Functional/Surf-Specific), C (Active Recovery). The weekly planner assigns the right type based on surf schedule and recovery state. Saves to `private/data/gym-programme.md` |
 | `/setup-nutrition` | Collects the athlete's nutritional profile: restrictions, preferences, cooking capacity, goals, shopping habits. Saves to `private/data/nutrition-profile.md` |
 | `/plan-week` | Plans the full training week. Fetches surf forecast, maps availability, assigns gym session types, generates meal plan per day adapted to training load, and produces a shopping list. Saves to `private/data/plans/YYYY-WNN.md` |
-| `/log-session` | Debrief after surfing. Captures session details + pre-session metric snapshot. Saves to `private/data/sessions/YYYY-MM-DD.md` |
+| `/log-session` | Debrief after surfing. Captures session details + pre-session metric snapshot. Cross-references conditions with Stormglass data. Captures video-coaching feedback if applicable. Saves to `private/data/sessions/YYYY-MM-DD.md` |
+| `/log-gym` | Debrief after a gym session. Reads actual workout from Hevy if available, captures subjective state and niggles. Flags arm/shoulder fatigue if surf training is planned within 24h. Saves to `private/data/sessions/YYYY-MM-DD-gym.md` |
 | `/consult [topic]` | Multidisciplinary consultation. Invokes 3–4 specialists **sequentially** on a specific topic — each reads what the previous ones wrote before contributing. Produces layered, non-contradictory reasoning. Use when a problem has clear roots in multiple domains simultaneously. Topics: recovery, technique, mental health, physical health, habits, periodisation. |
 | `/evolve` | Meta-skill. Audits the full ecosystem, identifies gaps, proposes and implements improvements — new skills, agents, coach upgrades, integrations. Run every 4–8 weeks or when the athlete hits a plateau or major milestone. |
 | `/reset` | Clears all athlete data in `private/`. Preserves the full coaching system. Resets for a new user. |
@@ -129,7 +130,16 @@ Updated via `/setup-metrics`. A snapshot of the most relevant fields is also cap
 Out-of-water training available to the athlete: what they do, when they can do it (fixed slots vs flexible), and coach's assessment. Used by `/plan-week` to schedule complementary training within real availability constraints.
 
 ### Gym programme — `private/data/gym-programme.md`
-Structured gym programme with 3 session types: A (Strength/Power), B (Functional/Surf-Specific), C (Active Recovery). Full exercises, sets, reps, and cues. `/plan-week` assigns the right type to each gym slot based on surf schedule and recovery state.
+Structured gym programme with 3 session types: A (Strength/Power), B (Functional/Surf-Specific), C (Active Recovery = mobility day). Full exercises, sets, reps, and cues. `/plan-week` assigns the right type to each gym slot based on surf schedule and recovery state.
+
+### Yoga programme — `private/data/yoga-programme.md`
+Structured yoga programme — the **D** session type. Self-guided flows (D1 thoracic/shoulder opening, D2 hips/posterior chain, D3 evening restorative), each with safety-brake cues built around the athlete's confirmed postural findings. Authored by the `mobility-coach`. `/plan-week` assigns the right flow per day.
+
+### Qigong programme — `private/data/qigong-programme.md`
+Structured qigong programme — the **E** session type. Short routines (E1 morning activation, E2 evening down-regulation, E3 thoracic), rooted in the athlete's TCM pattern. Authored by the `chinese-medicine-doctor`. E2 is the high-leverage evening routine for sleep; E2 and D3 are alternatives for the same evening slot.
+
+### Land surf-training — `private/data/land-surf-training.md`
+Land-based surf-skill programme ("power surfing" logic) — recreates surf phases/manoeuvres on land. 5 blocks (pop-up, bottom turn, cutback backside, slackline, surfskate), each tied to an active technique goal and the latest frame analysis. Authored by the `surf-technique-coach`. Block 1 is daily; slackline (Block 4) is a fixed weekly fixture; surfskate (Block 5) is the longer transfer session.
 
 ### Nutrition profile — `private/data/nutrition-profile.md`
 Athlete's nutritional context: restrictions, allergies, dietary choices, goals, cooking capacity, shopping habits, and food preferences. Used by `/plan-week` to generate daily meal suggestions and a weekly shopping list.

@@ -76,11 +76,11 @@ In `surf-spots.md`, find the "Regras aprendidas" table under the spot they surfe
 
 **Step 2 — Fill knowledge gaps**
 
-For each ❓ in the spot's profile table that was answered today, change ❓ to ✅ and fill in the value. For each 🟡 that was confirmed, change to ✅. Be conservative — only update when what Ricardo said clearly resolves the gap. If ambiguous, leave as ❓ and add a note in the knowledge gained field.
+For each ❓ in the spot's profile table that was answered today, change ❓ to ✅ and fill in the value. For each 🟡 that was confirmed, change to ✅. Be conservative — only update when what the athlete said clearly resolves the gap. If ambiguous, leave as ❓ and add a note in the knowledge gained field.
 
 **Step 3 — Check off lacunas**
 
-In the "Lacunas de conhecimento" section, tick off (`[x]`) any items that are now resolved. If a new gap was revealed (e.g. Ricardo mentioned the spot behaves differently on spring tides), add it to the appropriate priority tier.
+In the "Lacunas de conhecimento" section, tick off (`[x]`) any items that are now resolved. If a new gap was revealed (e.g. the athlete mentioned the spot behaves differently on spring tides), add it to the appropriate priority tier.
 
 **Step 4 — If surf-spots.md doesn't include this spot**
 

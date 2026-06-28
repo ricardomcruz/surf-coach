@@ -8,27 +8,11 @@ __pycache__/
 # Local settings with API keys and personal paths — never commit
 .claude/settings.local.json
 
-# Private athlete content — local only, never commit
-private/data/sessions/*.md
-private/data/sessions/*.html
-private/data/sessions/assets/
+# Private athlete content — everything in private/ is local only, never commit
+# Any new file added to private/ is automatically ignored — no need to list individually
+private/agents/**
+private/skills/**
+private/config/**
+private/data/**
 !private/data/sessions/template.md
-private/data/goals/goals.md
-private/data/profile/profile.md
-private/data/metrics/metrics.md
-private/data/activities.md
-private/data/evolution-log.md
-private/data/gym-programme.md
-private/data/nutrition-profile.md
-private/data/plans/*.md
-private/data/plans/*.html
-private/data/surf-spots.md
-private/data/metrics/body-measurements.md
-private/data/metrics/*/
-private/agents/*
-private/skills/*
-private/data/specialist-reports/**/*.md
-private/data/pending-setup.md
-private/config/
-private/data/consult/
 !private/**/.gitkeep
