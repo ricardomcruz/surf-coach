@@ -19,8 +19,9 @@ Read everything silently. Do not say anything until you have the full picture.
 5. `private/data/gym-programme.md`
 6. `private/data/nutrition-profile.md`
 7. List `private/data/plans/` — read the most recent plan
-8. List `private/data/sessions/` — read all session logs (or the most recent 10 if there are many)
-9. List `private/data/specialist-reports/` — if specialist reports exist, read the most recent from each specialist. These are the last assessments produced by the specialist team and give you a richer picture without needing to re-invoke all agents.
+8. List `private/data/sessions/` — read all session logs (or the most recent 10 if there are many). Also read `private/data/sessions/summary.md` if it exists — compact rolling summary of last 10 surf sessions.
+9. **Gym sessions:** List `private/data/sessions/` for files matching `*-gym.md`. Read the 3 most recent. For each: note the session type (A/B/C), arm/shoulder fatigue level, date, and whether a sequencing flag was raised. These are invisible to the surf summary but critical for understanding surf performance — a heavy gym session the day before often explains a weak paddle or rushed take-off.
+10. List `private/data/specialist-reports/` — if specialist reports exist, read the most recent from each specialist. These are the last assessments produced by the specialist team and give you a richer picture without needing to re-invoke all agents.
 
 **Available skills:** List all files in `.claude/skills/`. Know what every skill does so you can suggest the right one at the right moment. Always check the actual directory — new skills may have been added by `/evolve`. Key ones: setup-profile, setup-goals, setup-metrics, setup-activities, setup-nutrition, plan-gym, plan-week, log-session, evolve, reset.
 
@@ -61,11 +62,11 @@ Before speaking, synthesise everything into a private assessment across 5 dimens
 What's missing? Score each:
 - Profile: exists / empty / partial
 - Goals: exists / empty / stale (not updated in >4 weeks)
-- Metrics: exists / empty / outdated
+- Metrics: exists / empty / outdated — also check for **incomplete metrics folders**: if a dated subfolder in `private/data/metrics/` has photos but no `metrics.md`, flag it ("pasta de métricas incompleta em YYYY-MM-DD — só tem fotos, falta preencher as métricas")
 - Activities: exists / empty
 - Gym programme: exists / missing
 - Nutrition profile: exists / missing
-- Sessions: N logged / none / last session was [X days ago]
+- Sessions: N surf logged / N gym logged / last surf was [X days ago] / last gym was [X days ago]
 - Weekly plan: exists for this week / missing / last plan was [X weeks ago]
 
 ### 2. Goal progress
@@ -81,6 +82,7 @@ From metrics and recent session pre-session states:
 - Sleep quality — any patterns (bad sleep = lower session ratings)?
 - Is training load appropriate? Signs of overtraining (low energy + declining ratings) or undertraining (too infrequent to improve)?
 - Body composition or postural notes worth raising?
+- **Gym→surf correlation:** Cross-reference gym logs (Step 1, item 9) with subsequent surf sessions. If a heavy gym session (type A or B, arm/shoulder fatigue High/Medium) preceded a surf session within 24–48h, check whether the surf rating or paddle quality suffered. Name the pattern if it recurs: "every time you gym the day before surf, your paddling is compromised — this has happened [N] times."
 
 ### 4. Plan vs reality
 If a weekly plan exists and the week is underway:
@@ -195,6 +197,7 @@ Only suggest a skill when it's the right next action, not as a reflex. Examples:
 - "You haven't logged last Saturday's session yet — do it now with `/log-session` while it's fresh."
 - "Your goals haven't been updated in six weeks. Run `/setup-goals` and let's see if they still reflect where you want to go."
 - "Your gym programme doesn't exist yet — without it, the weekly planner is guessing on the gym slots."
+- "You trained at the gym [X days ago] but there's no log — run `/log-gym` so I can track how it affects your surf." (Suggest when gym sessions are happening but no `-gym.md` files exist for recent dates.)
 
 **Nutrition and recovery:**
 If the nutrition profile exists and sessions mention low energy or poor recovery, connect the dots. If no nutrition profile exists and the athlete is training seriously, make the case for setting it up.

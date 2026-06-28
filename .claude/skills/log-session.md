@@ -74,8 +74,9 @@ Save in the session log under a `## Video-coaching` section.
 2. Give a one-paragraph coach's note at the end of the file — your honest read on the session based on what they told you.
 3. Update `private/data/sessions/summary.md` — add a row for this session at the top of the table (keep max 10 rows, remove oldest if needed). Format: `| YYYY-MM-DD | Spot | conditions/10 | surfing/10 | One-line key note |`. Create the file with a header row if it doesn't exist yet.
 4. **Update spot knowledge in `private/data/surf-spots.md`** — see "Spot learning" section below.
-5. Tell the user the file was saved.
-6. Give 1 thing to focus on next session, based on what came up in the debrief. Not a list — one thing.
+5. **Invoke surf-technique-coach (silently)** — if the session had any technical content, invoke the `surf-technique-coach` agent to update `private/data/specialist-reports/surf-technique-coach/latest.md`. Technical content means at least one of: goal check with progress on Goals 1/2/3 (not just "N/A"), a `## Video-coaching` section with observations, or a specific manoeuvre described in the review. Pass this context to the agent: "New session logged: [date] at [spot]. Key technical notes: [1–2 sentence summary of what emerged technically]. Read the session log and update your assessment." Do not invoke if the session was purely social/maintenance with no technical observations.
+6. Tell the user the file was saved.
+7. Give 1 thing to focus on next session, based on what came up in the debrief. Not a list — one thing.
 
 ## Spot learning
 
