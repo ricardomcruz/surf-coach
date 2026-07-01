@@ -68,6 +68,54 @@ Ask: "Foi sessão de video-coaching?" If yes:
 
 Save in the session log under a `## Video-coaching` section.
 
+**Video analysis via ChatGPT**
+After closing the video-coaching questions (or if no human coach but the athlete filmed the session), ask: "Tens vídeo da sessão para analisar com o ChatGPT?"
+
+If yes:
+1. Generate a structured ChatGPT prompt (see format below) — tailored to their active goals, known weaknesses, and what came up in this session's debrief.
+2. Tell the athlete: "Passa este prompt ao ChatGPT juntamente com o(s) vídeo(s) da sessão. Quando tiveres o feedback, volta aqui e partilha — vou incorporá-lo no relatório."
+3. **Pause** — do not save the session file yet. Wait for the athlete to return with ChatGPT's output.
+4. When the athlete shares ChatGPT's analysis, incorporate it in the session log under `## Análise de vídeo (ChatGPT)` and then proceed to save the file.
+
+If the athlete says they'll get the ChatGPT feedback later, save the session file without that section and note at the end: "Análise de vídeo pendente — partilha o feedback do ChatGPT quando tiveres e actualizo o relatório."
+
+**ChatGPT prompt format:**
+
+Generate the prompt dynamically based on the athlete's data. Structure:
+
+```
+És um coach de surf de elite a analisar vídeo de uma sessão de treino. Avalia as ondas que vês com foco nos seguintes pontos, por ordem de prioridade:
+
+**Contexto do atleta:**
+- Nível: [from profile]
+- Stance: [regular/goofy]
+- Foco actual: [active goals, 1-2 sentences]
+- Padrões conhecidos a corrigir: [key weaknesses from profile + latest technique-coach report if available]
+
+**O que aconteceu nesta sessão (contexto):**
+[1-2 sentence summary of what the athlete described in the debrief — what they felt was working/not working]
+
+**Analisa especificamente:**
+1. [Most relevant technical point given active goals — e.g. "Posição dos ombros e anca no take-off — estão a rodar cedo o suficiente?"]
+2. [Second priority — e.g. "Linha do bottom turn — está a comprometer a amplitude antes da manobra de topo?"]
+3. [Third — e.g. "Rail engagement no cutback — está a usar o rail ou a fazer manobra de braços?"]
+4. Qualquer padrão de erro recorrente que vejas e que não esteja na lista acima.
+
+**Formato de resposta:**
+Para cada onda/momento analisado:
+- O que está bem (reforçar)
+- O que melhorar (específico e accionável)
+- Uma correcção concreta para a próxima sessão
+
+No final: um resumo em 3 bullets — os padrões mais consistentes que viste (positivos e negativos).
+```
+
+Calibrate the specific analysis points based on:
+- Active goals from `goals.md`
+- Weaknesses from `profile.md`
+- What the athlete said went wrong in this session's debrief
+- Latest `surf-technique-coach/latest.md` if available
+
 ## After collecting all info
 
 1. Write the session log to `private/data/sessions/YYYY-MM-DD.md` using today's date.
@@ -148,6 +196,13 @@ Create a minimal profile block for the new spot with all factors as ❓ and add 
 - **Correcções / drills prescritos:**
 - **Foco para a próxima sessão:**
 - **Material capturado:** (frames/vídeo — localização)
+
+## Análise de vídeo — ChatGPT (se aplicável)
+- **Ondas analisadas:**
+- **Padrões positivos:**
+- **Padrões a corrigir:**
+- **Correcção prioritária para próxima sessão:**
+- **Outros padrões identificados:**
 
 ## Coach's note
 [Your honest paragraph here]
